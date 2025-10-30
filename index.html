@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard COVID-19 Indonesia</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <header class="main-header">
+            <h1>Dashboard Peta Interaktif COVID-19 Indonesia</h1>
+            <p>Eksplorasi data geospasial dan temporal dari Maret 2020 hingga September 2022</p>
+        </header>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="metric-select">Pilih Metrik Peta:</label>
+                <select id="metric-select">
+                    <option value="New Cases" selected>Kasus Baru</option>
+                    <option value="New Deaths">Kematian Baru</option>
+                    <option value="Total Cases">Total Kasus</option>
+                    <option value="Total Deaths">Total Kematian</option>
+                </select>
+            </div>
+            <div class="control-group-slider">
+                <button id="play-pause-button">Play</button>
+                <span id="date-display"></span>
+                <input type="range" id="date-slider" class="slider" min="0" max="100" value="0">
+            </div>
+        </div>
+
+        <div class="dashboard-container">
+            <div id="map-container">
+                <svg id="map-chart"></svg>
+                <div id="legend-container">
+                    <svg id="legend-chart"></svg>
+                </div>
+            </div>
+            <div id="context-chart-container">
+                <h3>Timeline Nasional (Agregat Mingguan)</h3>
+                <svg id="context-chart"></svg>
+            </div>
+        </div>
+
+        <div class="kpi-container">
+            <div class="kpi-card">
+                <h4>Kasus Baru (Nasional)</h4>
+                <div id="kpi-new-cases" class="kpi-value">0</div>
+            </div>
+            <div class="kpi-card">
+                <h4>Kematian Baru (Nasional)</h4>
+                <div id="kpi-new-deaths" class="kpi-value">0</div>
+            </div>
+            <div class="kpi-card">
+                <h4>Total Kasus (Nasional)</h4>
+                <div id="kpi-total-cases" class="kpi-value">0</div>
+            </div>
+            <div class="kpi-card">
+                <h4>Total Kematian (Nasional)</h4>
+                <div id="kpi-total-deaths" class="kpi-value">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal-content">
+            <button id="modal-close">×</button>
+            <div id="modal-body">
+                
+                <div class="modal-top-section">
+                    <div id="modal-map-container">
+                        <svg id="modal-map"></svg>
+                    </div>
+                    <div id="modal-info-container">
+                        <h2 id="modal-title">Nama Provinsi</h2>
+                        <p id="modal-date" class="date">Tanggal</p>
+                        </div>
+                </div>
+                
+                <div id="modal-description-container">
+                    <h3>Deskripsi Situasi</h3>
+                    <p id="modal-description-text">Analisis singkat tentang data...</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
